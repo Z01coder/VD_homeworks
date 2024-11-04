@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Карточки пользователей</title>
+    <style>
+        /* Стили для контейнера */
+        .container {
+            display: flex;
+            justify-content: center; /* Центрируем элементы по горизонтали */
+            gap: 30px; /* Отступ между карточками */
+            margin-top: 50px; /* Добавляем отступ сверху для удобства */
+        }
+
+        /* Стили для карточки */
+        .card {
+            width: 380px;
+            height: 800px;
+            background-color: YellowGreen;
+            border-radius: 60px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Добавим небольшую тень для красоты */
+            transition: transform 0.3s ease; /* Добавляем плавный переход */
+        }
+
+        .card:hover {
+    transform: scale(1.05); /* Увеличиваем карточку на 5% */
+        }
+
+        .photo {
+            height: 40%;
+            padding: 15px;
+        }
+
+        .info {
+            padding: 40px;
+            height: 40%;
+            margin-top: 230px;
+            font-family: font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+            font-size: 20px; /* Опциональный параметр для изменения размера шрифта */
+        }
+
+        img {
+            position: static;
+            border-radius: 40px;
+            width: 350px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Контейнер для карточек -->
+    <div class="container">
+        <!-- Первая карточка -->
+        <div class="card">
+            <div class="photo">
+                <img src="imgs/1.jpg" alt="Фото 1">
+            </div>
+            <div class="info">
+                Радион Аэмдэхович Ерыксов<br />
+                Родился 2 мая 2011 года <br />
+                Город: Синьчжу <br />
+                email: go@brrr.com
+            </div>
+        </div>
+
+        <!-- Вторая карточка -->
+        <div class="card">
+            <div class="photo">
+                <img src="imgs/2.jpg" alt="Фото 2">
+            </div>
+            <div class="info">
+                Энвидий Джефорсович Артиксов<br />
+                Родился 28 августа 2013 года <br />
+                Город: Синьчжу <br />
+                email: raytracing@lolo.com
+            </div>
+        </div>
+
+        <!-- Третья карточка -->
+        <div class="card">
+            <div class="photo">
+                <img src="imgs/3.jpg" alt="Фото 3">
+            </div>
+            <div class="info">
+                Интэлёха Аркадич Асемьсотов<br />
+                Родился 12 апреля 2017 года <br />
+                Город: Синьчжу <br />
+                email: imblue@dabade.com
+            </div>
+        </div>
+    </div>
+</body>
+</html>
