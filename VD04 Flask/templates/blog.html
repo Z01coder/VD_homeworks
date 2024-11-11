@@ -5,9 +5,45 @@
 {% block content %}
 <h1>Блог</h1>
 <p>Приветствую вас в своём блоге! Вашему вниманию несколько свежих публикаций:</p>
+
 <ul>
     <li>Изучаем основы Flask</li>
     <li>Пишем простое вэб-приложение</li>
-    <li>Static и Templates. Что есть что? </li>
+    <li>Static и Templates. Что есть что?</li>
 </ul>
+
+<!-- Кнопка для открытия формы -->
+<button onclick="document.getElementById('form-container').style.display='block'">Отправить анкету</button>
+
+<!-- Форма для ввода данных -->
+<div id="form-container" style="display:none; margin-top: 20px;">
+    <form method="post" action="{{ url_for('blog') }}">
+        <label for="name">Имя:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="city">Город:</label>
+        <input type="text" id="city" name="city" required>
+
+        <label for="hobby">Хобби:</label>
+        <input type="text" id="hobby" name="hobby" required>
+
+        <label for="age">Возраст:</label>
+        <input type="number" id="age" name="age" required>
+
+        <button type="submit">Отправить</button>
+    </form>
+</div>
+
+<!-- Вывод данных в виде карточек -->
+<h2>Анкеты пользователей:</h2>
+<div>
+    {% for user in user_data %}
+    <div style="border: 1px solid #ccc; padding: 10px; margin: 10px 0;">
+        <p><strong>Имя:</strong> {{ user.name }}</p>
+        <p><strong>Город:</strong> {{ user.city }}</p>
+        <p><strong>Хобби:</strong> {{ user.hobby }}</p>
+        <p><strong>Возраст:</strong> {{ user.age }}</p>
+    </div>
+    {% endfor %}
+</div>
 {% endblock %}
