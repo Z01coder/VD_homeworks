@@ -1,0 +1,139 @@
+VD04 Flask
+├───static
+│   └───style.css
+├───templates
+│   ├───base.html
+│   ├───blog.html
+│   ├───contact.html
+│   └───index.html
+└───app.py
+
+
+style.css
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: #cd0000;
+    padding: 1em;
+    text-align: center;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 10px;
+}
+
+nav ul li a {
+    color: #fb0707;
+    text-decoration: none;
+}
+
+main {
+    padding: 2em;
+}
+
+base.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My Website{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Главная</a></li>
+                <li><a href="{{ url_for('blog') }}">Блог</a></li>
+                <li><a href="{{ url_for('contact') }}">Контакты</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>
+
+blog.html
+
+{% extends 'base.html' %}
+
+{% block title %}Блог{% endblock %}
+
+{% block content %}
+<h1>Блог</h1>
+<p>Приветствую вас в своём блоге! Вашему вниманию несколько свежих публикаций:</p>
+<ul>
+    <li>Изучаем основы Flask</li>
+    <li>Пишем простое вэб-приложение</li>
+    <li>Static и Templates. Что есть что? </li>
+</ul>
+{% endblock %}
+
+contact.html
+
+{% extends 'base.html' %}
+
+{% block title %}Контакты{% endblock %}
+
+{% block content %}
+<h1>Связь со мной</h1>
+<p>Если у вас есть какие-то вопросы, пожалуйста свяжитесь со мной по адресу <a href="mailto:xan@nax.com">xan@nax.com</a>.</p>
+{% endblock %}
+
+index.html
+
+{% extends 'base.html' %}
+
+{% block title %}Главная{% endblock %}
+
+{% block content %}
+<h1>Добро пожаловать на мою страницу</h1>
+<p>{{ date_time }}</p>
+<p>Домашняя страница</p>
+{% endblock %}
+
+app.py
+
+from flask import Flask, render_template
+from datetime import datetime
+import locale
+
+app = Flask(__name__)
+
+try:
+    locale.setlocale(locale.LC_TIME, 'ru_RU')
+except locale.Error:
+    print("Ошибка")
+
+@app.route('/')
+def index():
+    now = datetime.now()
+    formatted_date = now.strftime("Сегодня %d %B %Y, сейчас %H:%M")
+    return render_template('index.html', date_time=formatted_date)
+
+@app.route('/blog')
+def blog():
+    return render_template('blog.html')
+
+@app.route('/contact')
+def contact():
+    return render_template('contact.html')
+
+if __name__ == '__main__':
+    app.run(debug=True)

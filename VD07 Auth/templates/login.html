@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="form-container">
+        <h2>Вход</h2>
+        <form method="post">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                {{ form.email.label(class="text-light") }}
+                {{ form.email(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.password.label(class="text-light") }}
+                {{ form.password(class="form-control") }}
+            </div>
+            <div class="text-center">
+                {{ form.submit(class="btn btn-primary", value="Вход") }}
+            </div>
+        </form>
+        <div class="text-center mt-3">
+            <a href="{{ url_for('register') }}">Нет аккаунта? Зарегистрируйтесь!</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="form-container">
+        <h2>Редактирование профиля</h2>
+        <form method="post">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                {{ form.name.label(class="text-light") }}
+                {{ form.name(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.email.label(class="text-light") }}
+                {{ form.email(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.new_password.label(class="text-light") }}
+                {{ form.new_password(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.confirm_new_password.label(class="text-light") }}
+                {{ form.confirm_new_password(class="form-control") }}
+            </div>
+            <div class="text-center">
+                {{ form.submit(class="btn btn-primary") }}
+            </div>
+        </form>
+        <div class="text-center mt-3">
+            <a href="{{ url_for('protected') }}">Назад</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="text-center mt-5">
+        <h2>VIP Контент</h2>
+        <p>Приветствую, {{ user.email }}! Только зарегистрированные пользователи могут видеть эту страницу!</p>
+        <img src="{{ url_for('static', filename='imgs/catpro.jpg') }}" alt="Protected Content" class="protected-image">
+        <div class="mt-4">
+            <a href="{{ url_for('edit_profile') }}" class="btn btn-secondary">Редактировать профиль</a>
+            <a href="{{ url_for('logout') }}" class="btn btn-primary">Выход</a>
+        </div>
+    </div>
+</body>
+</html>
