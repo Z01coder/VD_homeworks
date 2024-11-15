@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
 from datetime import datetime
+import requests
 import locale
 
 app = Flask(__name__)
@@ -17,7 +18,17 @@ user_data = []
 def index():
     now = datetime.now()
     formatted_date = now.strftime("Сегодня %d %B %Y, сейчас %H:%M")
-    return render_template('index.html', date_time=formatted_date)
+    # Запрос к API для получения случайной цитаты
+    try:
+        response = requests.get("https://api.quotable.io/random", timeout=5,  verify=False)  # Добавлен таймаут
+        response.raise_for_status()  # Проверка успешности запроса (статус 200)
+        quote_data = response.json()
+    except requests.RequestException as e:
+        print(f"Ошибка при запросе цитаты: {e}")  # Логгирование ошибки в консоль
+        quote_data = {"content": "Не удалось загрузить цитату.", "author": "Неизвестно"}
+
+    # Передача данных в шаблон
+    return render_template('index.html', date_time=formatted_date, quote=quote_data)
 
 
 @app.route('/blog', methods=['GET', 'POST'])

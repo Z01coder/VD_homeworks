@@ -6,4 +6,11 @@
 <h1>Добро пожаловать на мою страницу</h1>
 <p>{{ date_time }}</p>
 <p>Домашняя страница</p>
+
+<!-- Блок для отображения случайной цитаты -->
+<div style="margin-top: 20px; padding: 10px; border-left: 4px solid #333;">
+    <p><strong>Цитата дня:</strong></p>
+    <blockquote style="font-style: italic;">"{{ quote.content }}"</blockquote>
+    <p style="text-align: right; font-weight: bold;">— {{ quote.author }}</p>
+</div>
 {% endblock %}
